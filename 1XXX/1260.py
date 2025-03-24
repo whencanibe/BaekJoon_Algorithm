@@ -19,7 +19,7 @@ def bfs():
     q = deque()
     result = []
     q.append(V)
-    #visited[V] = True
+
     while q:
         v = q.popleft()
         result.append(v)
@@ -33,9 +33,6 @@ def bfs():
 
 dfs_result = []
 def dfs(start):
-    q = deque()
-    
-    q.append(start)
     visited[start] = True
     dfs_result.append(start)
 
