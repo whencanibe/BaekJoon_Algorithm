@@ -35,6 +35,7 @@ def move_left(board):
                     idx += 1
 
                 else:
+                    dq.append(last)
                     appendDeque(dq, board, i, j)
             else:
                 appendDeque(dq, board, i, j)
@@ -52,8 +53,8 @@ def rotate_clockwise(board):
     
     return new_board
 
-def print_board(board):
-    print()
+def print_board(board,n):
+    print("b",n)
     for row in board:
         print(*row)
         
@@ -68,7 +69,41 @@ def solve():
     board = [list(map(int, readline().split())) for _ in range(N)]
 
     max_num = 0
-    
+    b1 = copy.deepcopy(board)
+    #print_board(b1,1)
+    for i in range(4):
+        b1 = rotate_clockwise(b1)
+        b2 = copy.deepcopy(b1)
+        move_left(b2)
+        #print_board(b2,2)
+        for j in range(4):
+            b2 = rotate_clockwise(b2)
+            b3 = copy.deepcopy(b2)
+            move_left(b3)
+            #print_board(b3,3)
+            for k in range(4):
+                b3 = rotate_clockwise(b3)
+                b4 = copy.deepcopy(b3)
+                move_left(b4)
+                #print_board(b4,4)
+                
+                for l in range(4):
+                    b4 = rotate_clockwise(b4)
+                    b5 = copy.deepcopy(b4)
+                    move_left(b5)
+                    #print_board(b5,5)
+                    for m in range(4):
+                        b5 = rotate_clockwise(b5)
+                        b6 = copy.deepcopy(b5)
+                        move_left(b6)
+                        #print_board(b6,6)
+                        tmp = max([item for row in b6 for item in row])
+                        #print("i", i, tmp)  
+                        if tmp > max_num:
+                            max_num = tmp
+    print(max_num)
+            
+                    
 
 if __name__ == "__main__":
     solve()
